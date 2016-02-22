@@ -7,6 +7,10 @@
  * aescipher class implements AES algorithm and all helper functions.
  */
 public class aescipher {
+  /**
+   * public constructor does nothing
+   */
+  public aescipher() {};
   // Work matrix W.
   private String[][] WMatrix = new String[4][44];
   // S-Box mappings.
