@@ -56,9 +56,6 @@ public class aescipher {
       bytes[count] = HexKey.substring(i, i+2);
       count++;
     }
-    for(int i = 0; i < bytes.length; i++) {
-      System.out.println(bytes[i]);
-    }
     int columns = 4;
     int rows = 4;
     int index = 0;
@@ -119,12 +116,6 @@ public class aescipher {
         }
       }
     }
-    for(int i = 4; i < columns; i++) {
-      for(int j = 0; j < rows; j++) {
-        System.out.print(WMatrix[j][i]);
-      }
-      System.out.println("");
-    }
     roundNum = 0;
     for(int i = 4; i < columns; i++) {
       int prevRoundNum = roundNum;
@@ -132,7 +123,7 @@ public class aescipher {
         roundNum++;
       }
       for(int j = 0; j < rows; j++) {
-        if(prevRoundNum != roundNum){
+        if(prevRoundNum != roundNum && j == 0){
           output[roundNum] = WMatrix[j][i];
         } else {
           output[roundNum] += WMatrix[j][i];
