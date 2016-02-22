@@ -52,6 +52,9 @@ public class aescipher {
     output[0] = HexKey;
     String[] bytes = new String[16];
     bytes = HexKey.split("\\w{2}");
+    for(String k : bytes) {
+      System.out.println(k);
+    }
     int columns = 4;
     int rows = 4;
     int index = 0;
