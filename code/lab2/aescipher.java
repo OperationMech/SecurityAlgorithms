@@ -93,7 +93,7 @@ public class aescipher {
       }
     }
     roundNum = 0;
-    for(int i = 4 i < columns; i++) {
+    for(int i = 4; i < columns; i++) {
       if(i % BlockLength == 0) {
         roundNum++;
       }
