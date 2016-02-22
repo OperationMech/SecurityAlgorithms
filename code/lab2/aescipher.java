@@ -87,7 +87,13 @@ public class aescipher {
         for (int j = 0; j < rows; j++) {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjNew = Integer.parseInt(WNew[j],16);
-          String WMNew = Integer.toHexString(WjFourLess ^ WjNew);
+          Integer WMPrime = WjFourLess ^ WjNew;
+          String WMNew = "";
+          if(WMPrime < 16) {
+            WMNew = "0" + Integer.toHexString(WMPrime);
+          } else {
+            WMNew = Integer.toHexString(WMPrime);
+          }
           WMatrix[j][i] = WMNew.toUpperCase();
         }
       } else {
@@ -96,7 +102,11 @@ public class aescipher {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjOneLess = Integer.parseInt(WMatrix[j][i-1],16);
           Integer WjPrime = WjFourLess ^ WjOneLess;
-          WMatrix[j][i] = Integer.toHexString(WjPrime).toUpperCase();
+          if(WjPrime < 16) {
+            WMatrix[j][i] = "0" + Integer.toHexString(WjPrime).toUpperCase();
+          } else {
+            WMatrix[j][i] = Integer.toHexString(WjPrime).toUpperCase();
+          }
         }
       }
     }
