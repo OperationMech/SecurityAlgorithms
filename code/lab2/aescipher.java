@@ -102,7 +102,7 @@ public class aescipher {
     }
     roundNum = 0;
     for(int i = 4; i < columns; i++) {
-      prevRoundNum = roundNum;
+      int prevRoundNum = roundNum;
       if(i % BlockLength == 0) {
         roundNum++;
       }
