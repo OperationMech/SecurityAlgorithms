@@ -8,7 +8,7 @@
  */
 public class aescipher {
   // Work matrix W.
-  private String[][] WMatrix = new String[4][44]("");
+  private String[][] WMatrix = new String[4][44];
   // S-Box mappings.
   private String[][] S_BOX = {
     {"63","7C","77","7B","F2","6B","6F","C5","30","01","67","2B","FE","D7","AB","76"},
@@ -44,10 +44,10 @@ public class aescipher {
    * @return String[]: The constructed round keys in a string array.
    */
   public String[] aesRoundKeys(String HexKey) {
-    String[] output = new String[11]("");
+    String[] output = new String[11];
     output[0] = HexKey;
-    String[] bytes = new String[16]("");
-    bytes = HexKey.split("\w{2}");
+    String[] bytes = new String[16];
+    bytes = HexKey.split("\\w{2}");
     int columns = 4
     int rows = 4
     int index = 0;
