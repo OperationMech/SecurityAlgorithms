@@ -14,7 +14,7 @@ public class driver {
    * @param args, The CLI args if used.
    * @return void, Prints the results to System.out.
    */
-  public void main(String args[]) {
+  public static void main(String args[]) {
     Scanner input = new Scanner(System.in);
     String key = input.next();
     aescipher cipher = new aescipher();
