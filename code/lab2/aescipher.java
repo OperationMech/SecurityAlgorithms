@@ -1,14 +1,23 @@
 /**
  *
+ * @file: aescipher.java
+ * @author: Anthony Cali
+ * @course: MSCS 630 Security Algorithms and Protocols
+ * @assignment: Lab 2
+ * @due date: Feb 23, 2016
+ * @version: 0.5
  *
+ * @abstract: Aescipher class file; This file contains all the neccessary
+ *              functions for the AES cipher.
  */
 
 /**
- * aescipher class implements AES algorithm and all helper functions.
+ * aescipher class implements the AES algorithm and all helper functions.
  */
 public class aescipher {
   /**
-   * public constructor does nothing
+   *
+   * Public constructor prevents existence issues.
    */
   public aescipher() {};
   // Work matrix W.
@@ -31,7 +40,7 @@ public class aescipher {
     {"70","3E","B5","66","48","03","F6","0E","61","35","57","B9","86","C1","1D","9E"},
     {"E1","F8","98","11","69","D9","8E","94","9B","1E","87","E9","CE","55","28","DF"},
     {"8C","A1","89","0D","BF","E6","42","68","41","99","2D","0F","B0","54","BB","16"}};
-  // Round Constants shortened to discovered repeat point.
+  // Round constants shortened to discovered repeat point.
   private String[] R_CON = {
     "8D","01","02","04","08","10","20","40","80","1B",
     "36","6C","D8","AB","4D","9A","2F","5E","BC","63",
@@ -41,10 +50,13 @@ public class aescipher {
     "CB"};
 
   /**
+   *
    * aesRoundKeys method finds the round keys for use in
-   * AES encryption/decryption rounds.
+   *  AES encryption/decryption rounds.
+   *
    * @param HexKey: The input key as a string for AES which is
-   *                transcribed into the round keys.
+   *                  transcribed into the round keys.
+   *
    * @return String[]: The constructed round keys in a string array.
    */
   public String[] aesRoundKeys(String HexKey) {
@@ -134,9 +146,12 @@ public class aescipher {
   }
 
   /**
+   *
    * aesSBox method determines the mapping for the input value.
+   *
    * @param inHex: The input string used to determine the row from
-   *               the low-order bits and col from high-order bits.
+   *                 the low-order bits and col from high-order bits.
+   *
    * @return String: The mapped value of the input value.
    */
   private String aesSBox(String inHex) {
@@ -150,8 +165,11 @@ public class aescipher {
   }
 
   /**
+   *
    * aseRcon method looks up the specific round constant using R_CON.
+   *
    * @param round: The current round for AES.
+   *
    * @return String: The round constant for the round.
    */
   private String aesRcon(int round) {

@@ -1,15 +1,24 @@
 /**
  *
+ * @file: driver.java
+ * @author: Anthony Cali
+ * @course: MSCS 630 Security Algorithms and Protocols
+ * @assignment: Lab 2
+ * @due date: Feb 23, 2016
+ * @version: 1.0
  *
+ * @abstract: Entry point driver class file.
  */
 
 import java.util.Scanner;
 
 /**
- * driver class used for testing purposes also functions as the entry point.
+ *
+ * Driver class used for testing purposes also functions as the entry point.
  */
 public class driver {
   /**
+   *
    * main entry point method.
    * @param args, The CLI args if used.
    * @return void, Prints the results to System.out.
