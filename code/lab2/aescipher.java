@@ -106,11 +106,7 @@ public class aescipher {
         roundNum++;
       }
       for(int j = 0; j < rows; j++) {
-        if(j == 0) {
-          output[roundNum] = WMatrix[j][i];
-        } else {
-          output[roundNum] += WMatrix[j][i];
-        }
+        output[roundNum] += WMatrix[j][i];
       }
     }
     return output;
