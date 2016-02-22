@@ -53,8 +53,8 @@ public class aescipher {
     int index = 0;
     for(int i = 0; i < columns; i++) {
       for(int j = 0; j < rows; j++) {
-        WMatrix[j][i] = String(HexKey.charAt(index) + HexKey.charAt(index+1));
-        index += 2;
+        WMatrix[j][i] = bytes[index];
+        index++;
       }
     }
     columns = 44;
