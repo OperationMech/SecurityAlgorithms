@@ -8,9 +8,9 @@
  */
 public class aescipher {
   // Work matrix W.
-  private String[4][44] WMatrix = new String[4][44]("");
+  private String[][] WMatrix = new String[4][44]("");
   // S-Box mappings.
-  private String[16][16] S_BOX = {
+  private String[][] S_BOX = {
     {"63","7C","77","7B","F2","6B","6F","C5","30","01","67","2B","FE","D7","AB","76"},
     {"CA","82","C9","7D","FA","59","47","F0","AD","D4","A2","AF","9C","A4","72","C0"},
     {"B7","FD","93","26","36","3F","F7","CC","34","A5","E5","F1","71","D8","31","15"},
@@ -28,7 +28,7 @@ public class aescipher {
     {"E1","F8","98","11","69","D9","8E","94","9B","1E","87","E9","CE","55","28","DF"},
     {"8C","A1","89","0D","BF","E6","42","68","41","99","2D","0F","B0","54","BB","16"}};
   // Round Constants shortened to discovered repeat point.
-  private String[51] R_CON = {
+  private String[] R_CON = {
     "8D","01","02","04","08","10","20","40","80","1B",
     "36","6C","D8","AB","4D","9A","2F","5E","BC","63",
     "C6","97","35","6A","D4","B3","7D","FA","EF","C5",
@@ -44,9 +44,9 @@ public class aescipher {
    * @return String[]: The constructed round keys in a string array.
    */
   public String[] aesRoundKeys(String HexKey) {
-    String[11] output = new String[11]("");
+    String[] output = new String[11]("");
     output[0] = HexKey;
-    String[16] bytes = new String[16]("");
+    String[] bytes = new String[16]("");
     bytes = HexKey.split("\w{2}");
     int columns = 4
     int rows = 4
@@ -64,7 +64,7 @@ public class aescipher {
       // The column is a multiple of 4.
       if(i % BlockLength == 0) {
         roundNum++;
-        String[4] WNew = {"","","",""};
+        String[] WNew = {"","","",""};
         // Make a new SBoxed vector and shift it by one left.
         for (int j = 0; j < rows; j++) {
           if(j == 0) {
@@ -112,7 +112,7 @@ public class aescipher {
    */
   private String aesSBox(String inHex) {
     String output = "";
-    int[2] bits = {0,0}
+    int[] bits = {0,0}
     for(int i = 0; i < inHex.length(); i++) {
      bits[i] = Integer.parseInt(a,16);
     }
