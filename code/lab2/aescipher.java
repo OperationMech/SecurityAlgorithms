@@ -56,6 +56,9 @@ public class aescipher {
       bytes[count] = HexKey.substring(i, i+2);
       count++;
     }
+    for(int i = 0; i < bytes.length(); i++) {
+      System.out.println(bytes[i]);
+    }
     int columns = 4;
     int rows = 4;
     int index = 0;
