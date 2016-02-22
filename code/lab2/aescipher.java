@@ -82,6 +82,7 @@ public class aescipher {
           }
         }
         Integer Rcon = Integer.parseInt(aesRcon(roundNum),16);
+        System.out.println(Rcon);
         Integer WPrimeS0 = Integer.parseInt(WNew[0],16);
         Integer WNewPrime = Rcon ^ WPrimeS0;
         if(WNewPrime < 16) {
@@ -89,6 +90,7 @@ public class aescipher {
         } else {
           WNew[0] = Integer.toHexString(WNewPrime).toUpperCase();
         }
+        // W(j-4 XOR WNew)
         for (int j = 0; j < rows; j++) {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjNew = Integer.parseInt(WNew[j],16);
