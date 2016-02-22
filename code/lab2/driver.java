@@ -17,7 +17,7 @@ public class driver {
   public static void main(String args[]) {
     Scanner input = new Scanner(System.in);
     String key = input.next();
-    String[11] roundKeysHex = aescipher.aesRoundKeys(key);
+    String[] roundKeysHex = aescipher.aesRoundKeys(key);
     for(String outKey : roundKeysHex) {
       System.out.println(outKey);
     }
