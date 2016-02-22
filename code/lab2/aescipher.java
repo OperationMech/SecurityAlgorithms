@@ -51,7 +51,11 @@ public class aescipher {
     String[] output = new String[11];
     output[0] = HexKey;
     String[] bytes = new String[16];
-    bytes = HexKey.split("[a-zA-Z0-9]{2}");
+    int count = 0;
+    for(int i = 0; i < HexKey.length()-1; i+=2) {
+      bytes[count] = HexKey.substring(i, i+2);
+      count++;
+    }
     for(String k : bytes) {
       System.out.println(k);
     }
@@ -120,7 +124,7 @@ public class aescipher {
   private String aesSBox(String inHex) {
     String output = "";
     int[] bits = {0,0};
-    String lookups[] = inHex.split("[a-zA-Z0-9]");
+    String[] lookups = inHex.split("\\w{1}");
     for(int i = 0; i < inHex.length(); i++) {
       bits[i] = Integer.parseInt(lookups[i],16);
     }
