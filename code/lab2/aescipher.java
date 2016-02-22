@@ -113,8 +113,9 @@ public class aescipher {
   private String aesSBox(String inHex) {
     String output = "";
     int[] bits = {0,0};
+    String lookups[] = inHex.split("\\w")
     for(int i = 0; i < inHex.length(); i++) {
-      bits[i] = Integer.parseInt((String)inHex.charAt(i),16);
+      bits[i] = Integer.parseInt(lookups[i],16);
     }
     output = S_BOX[bits[0]][bits[1]];
     return output;
