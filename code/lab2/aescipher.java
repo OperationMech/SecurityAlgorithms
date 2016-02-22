@@ -114,7 +114,7 @@ public class aescipher {
     String output = "";
     int[] bits = {0,0};
     for(int i = 0; i < inHex.length(); i++) {
-     bits[i] = Integer.parseInt(a,16);
+     bits[i] = Integer.parseInt(inHex[i],16);
     }
     output = S_BOX[bits[0]][bits[1]];
     return output;
