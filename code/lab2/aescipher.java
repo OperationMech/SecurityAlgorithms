@@ -48,12 +48,12 @@ public class aescipher {
     output[0] = HexKey;
     String[] bytes = new String[16];
     bytes = HexKey.split("\\w{2}");
-    int columns = 4
-    int rows = 4
+    int columns = 4;
+    int rows = 4;
     int index = 0;
     for(int i = 0; i < columns; i++) {
       for(int j = 0; j < rows; j++) {
-        WMatrix[j][i] = HexKey[index]
+        WMatrix[j][i] = HexKey[index];
         index++;
       }
     }
@@ -75,7 +75,7 @@ public class aescipher {
         }
         Integer Rcon = Integer.parseInt(aesRcon(roundNum),16);
         Integer WprimeS0 = Integer.parseInt(WOneLess[0],16);
-        String WNew[0] = Integer.toHexString(Rcon ^ WprimeS0).toUpperCase();
+        WNew[0] = Integer.toHexString(Rcon ^ WprimeS0).toUpperCase();
         for (int j = 0; j < rows; j++) {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjNew = Integer.parseInt(WNew[j],16);
@@ -112,7 +112,7 @@ public class aescipher {
    */
   private String aesSBox(String inHex) {
     String output = "";
-    int[] bits = {0,0}
+    int[] bits = {0,0};
     for(int i = 0; i < inHex.length(); i++) {
      bits[i] = Integer.parseInt(a,16);
     }
@@ -126,7 +126,7 @@ public class aescipher {
    * @return String: The round constant for the round.
    */
   private String aesRcon(int round) {
-    int roundsToRepeat = 51
+    int roundsToRepeat = 51;
     String output = R_CON[round % roundsToRepeat];
     return output;
   }
