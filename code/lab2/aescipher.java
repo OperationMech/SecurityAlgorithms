@@ -53,8 +53,8 @@ public class aescipher {
     int index = 0;
     for(int i = 0; i < columns; i++) {
       for(int j = 0; j < rows; j++) {
-        WMatrix[j][i] = HexKey[index];
-        index++;
+        WMatrix[j][i] = String(HexKey.charAt(index) + HexKey.charAt(index+1));
+        index += 2;
       }
     }
     columns = 44;
@@ -74,8 +74,8 @@ public class aescipher {
           }
         }
         Integer Rcon = Integer.parseInt(aesRcon(roundNum),16);
-        Integer WprimeS0 = Integer.parseInt(WOneLess[0],16);
-        WNew[0] = Integer.toHexString(Rcon ^ WprimeS0).toUpperCase();
+        Integer WPrimeS0 = Integer.parseInt(WNew[0],16);
+        WNew[0] = Integer.toHexString(Rcon ^ WPrimeS0).toUpperCase();
         for (int j = 0; j < rows; j++) {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjNew = Integer.parseInt(WNew[j],16);
