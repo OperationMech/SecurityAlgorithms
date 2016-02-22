@@ -105,8 +105,8 @@ public class aescipher {
       if(i % BlockLength == 0) {
         roundNum++;
       }
-      for(String keypart : WMatrix[i]) {
-        output[roundNum] += keypart;
+      for(int j = 0; j < rows; j++) {
+        output[roundNum] += WMatrix[i][j];
       }
     }
     return output;
