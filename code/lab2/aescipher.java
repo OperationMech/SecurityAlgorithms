@@ -83,7 +83,12 @@ public class aescipher {
         }
         Integer Rcon = Integer.parseInt(aesRcon(roundNum),16);
         Integer WPrimeS0 = Integer.parseInt(WNew[0],16);
-        WNew[0] = Integer.toHexString(Rcon ^ WPrimeS0).toUpperCase();
+        Integer WNewPrime = Rcon ^ WPrimeS0;
+        if(WNewPrime < 16) {
+          WNew[0] = "0" + Integer.toHexString(WNewPrime).toUpperCase();
+        } else {
+          WNew[0] = Integer.toHexString(WNewPrime).toUpperCase();
+        }
         for (int j = 0; j < rows; j++) {
           Integer WjFourLess = Integer.parseInt(WMatrix[j][i-4],16);
           Integer WjNew = Integer.parseInt(WNew[j],16);
