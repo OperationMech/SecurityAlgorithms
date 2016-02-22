@@ -102,11 +102,16 @@ public class aescipher {
     }
     roundNum = 0;
     for(int i = 4; i < columns; i++) {
+      prevRoundNum = roundNum;
       if(i % BlockLength == 0) {
         roundNum++;
       }
       for(int j = 0; j < rows; j++) {
-        output[roundNum] += WMatrix[j][i];
+        if(prevRoundNum != roundNum){
+          output[roundNum] = WMatrix[j][i];
+        } else {
+          output[roundNum] += WMatrix[j][i];
+        }
       }
     }
     return output;
@@ -125,7 +130,6 @@ public class aescipher {
       bits[i] = Integer.parseInt(inHex.substring(i,i+1),16);
     }
     output = S_BOX[bits[0]][bits[1]];
-    System.out.println(output);
     return output;
   }
 
