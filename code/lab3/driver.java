@@ -1,13 +1,13 @@
 /**
  *
- * @file: driver.java
+ * @file: Driver.java
  * @author: Anthony Cali
  * @course: MSCS 630 Security Algorithms and Protocols
- * @assignment: Lab 2
- * @due date: Feb 23, 2016
+ * @assignment: Lab 3
+ * @due date: March 31, 2016
  * @version: 1.0
  *
- * @abstract: Entry point driver class file.
+ * @abstract: Entry point Driver class file.
  */
 
 import java.util.Scanner;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  *
  * Driver class used for testing purposes also functions as the entry point.
  */
-public class driver {
+public class Driver {
   /**
    *
    * main entry point method.
@@ -26,7 +26,7 @@ public class driver {
   public static void main(String args[]) {
     Scanner input = new Scanner(System.in);
     String key = input.next();
-    aescipher cipher = new aescipher();
+    AEScipher cipher = new AEScipher();
     String[] roundKeysHex = cipher.aesRoundKeys(key);
     for(String outKey : roundKeysHex) {
       System.out.println(outKey);

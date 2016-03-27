@@ -1,11 +1,11 @@
 /**
  *
- * @file: aescipher.java
+ * @file: AEScipher.java
  * @author: Anthony Cali
  * @course: MSCS 630 Security Algorithms and Protocols
  * @assignment: Lab 2
- * @due date: Feb 23, 2016
- * @version: 0.5
+ * @due date: March 31, 2016
+ * @version: 0.8
  *
  * @abstract: Aescipher class file; This file contains all the neccessary
  *              functions for the AES cipher.
@@ -14,12 +14,12 @@
 /**
  * aescipher class implements the AES algorithm and all helper functions.
  */
-public class aescipher {
+public class AEScipher {
   /**
    *
    * Public constructor prevents existence issues.
    */
-  public aescipher() {};
+  public AEScipher() {};
   // Work matrix W.
   private String[][] WMatrix = new String[4][44];
   // S-Box mappings.
@@ -48,6 +48,10 @@ public class aescipher {
     "91","39","72","E4","D3","BD","61","C2","9F","25",
     "4A","94","33","66","CC","83","1D","3A","74","E8",
     "CB"};
+  // State Matrix
+  private byte[][] stateMatrix = new byte[4][4];
+  // RoundKey XOR Matrix
+  private byte[][] keyInXOR = new byte[4][4];
 
   /**
    *
