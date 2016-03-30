@@ -209,6 +209,20 @@ public class AEScipher {
 
   public String aes(String pTextHex, String keyHex) {
     aesRoundKeys(keyHex);
-    
+    for(int round = 0; round < 9; round++) {
+
+    }
   }
+
+  /**
+   *
+   * stringToByte method converts a hex string pair to a byte.
+   * @param toByte: The hex string pair.
+   * @return byte: The byte value of the input string.
+   */
+  private byte stringToByte(String toByte) {
+    return ((Byte) Integer.parseInt(toByte, 16)).byteValue();
+  }
+
+
 }
