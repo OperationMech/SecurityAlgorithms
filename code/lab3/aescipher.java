@@ -191,20 +191,74 @@ public class AEScipher {
    *
    * @return byte matrix: The XOR result state matrix.
    */
-  private byte[][] aesStateXOR(byte[][] sHex, String[][] keyHex) {
-
+  private byte[][] aesStateXOR(byte[][] sHex, byte[][] keyHex) {
+    byte[][] output = new byte[4][4];
+    for(int rows = 0; rows < 4; rows++) {
+      for(int cols = 0; cols < 4; cols++) {
+        output = sHex[rows][cols] ^ keyHex[rows][cols]
+      }
+    }
+    return output;
   }
 
   private byte[][] aesNibbleSub(byte[][] inStateHex) {
-
+    String lookupVal = "";
+    byte[][] output = new byte[4][4];
+    for(int rows = 0; rows < 4; rows++) {
+      for(int cols = 0; cols < 4; cols++) {
+        if(inStateHex[rows][cols] < 16) {
+          lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols]);
+        } else {
+          lookupVal = Integer.toHexString(inStateHex[rows][cols]);
+        }
+        output[rows][cols] = aesSBox(lookupVal.toUpperCase());
+      }
+    }
+    return output;
   }
 
   private byte[][] aesShiftRow(byte[][] inStateHex) {
-
+    int row = 1;
+    byte[][] output = new byte[4][4];
+    for(int col = 0; col < 4; col++ ) {
+      if(col = 0) {
+        output[row][col+3] = inStateHex[row][col];
+      } else {
+        output[row][col-1] = inStateHex[row][col];
+      }
+    }
+    row++;
+    for(int col = 0; col < 4 - row; col++) {
+      output[row][col+2] = inStateHex[row][col];
+      output[row][col] = inStateHex[row][col+2];
+    }
+    row++;
+    for(int col = 0; col < 4; col++) {
+      output[row][col+1%4] = output[row][col];
+    }
+    return output;
   }
 
   private byte[][] aesMixColumn(byte[][] inStateHex) {
+    byte[][] output = new byte[4][4];
+  }
 
+  private byte[] gfMult(byte[] inVecHex) {
+    byte[] output = new byte[4];
+    byte[] copy = new byte[4];
+    byte[] gfFactor = new byte[4];
+    byte overflow;
+    int overflowVal = 0x1b;
+    for(int index = 0; index < 4; index++) {
+      copy[index] = inVecHex[index];
+      overflow = inVecHex[index] >> 7;
+      gfFactor[index] = inVecHex[index] << 1;
+      gfFactor[index] ^=  overflow & overflowVal;
+    }
+    output[0] = gfFactor[0] ^ (gfFactor[1] ^ copy[1]) ^ copy[2] ^ copy[3];
+    output[1] = copy[0] ^ gfFactor[1] ^ (gfFactor[2] ^ copy[2]) ^ copy[3];
+    output[2] = copy[0] ^ copy[1] ^ gfFactor[2] ^ (gfFactor[3] ^ copy[3]);
+    output[3] = (gfFactor[0] ^ copy[0]) ^ copy[1] ^ copy[2] ^ gfFactor[3];
   }
 
   public String aes(String pTextHex, String keyHex) {
