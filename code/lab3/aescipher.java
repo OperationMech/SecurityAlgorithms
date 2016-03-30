@@ -63,7 +63,7 @@ public class AEScipher {
    *
    * @return String[]: The constructed round keys in a string array.
    */
-  public String[] aesRoundKeys(String HexKey) {
+  private String[] aesRoundKeys(String HexKey) {
     String[] output = new String[11];
     output[0] = HexKey;
     String[] bytes = new String[16];
@@ -170,7 +170,7 @@ public class AEScipher {
 
   /**
    *
-   * aseRcon method looks up the specific round constant using R_CON.
+   * aesRcon method looks up the specific round constant using R_CON.
    *
    * @param round: The current round for AES.
    *
@@ -180,5 +180,35 @@ public class AEScipher {
     int roundsToRepeat = 51;
     String output = R_CON[round % roundsToRepeat];
     return output;
+  }
+
+  /**
+   *
+   * aesStateXOR method combines the round key with the state matrix
+   *
+   * @param sHex: The state matrix.
+   * @param keyHex: The round key matrix.
+   *
+   * @return byte matrix: The XOR result state matrix.
+   */
+  private byte[][] aesStateXOR(byte[][] sHex, String[][] keyHex) {
+
+  }
+
+  private byte[][] aesNibbleSub(byte[][] inStateHex) {
+
+  }
+
+  private byte[][] aesShiftRow(byte[][] inStateHex) {
+
+  }
+
+  private byte[][] aesMixColumn(byte[][] inStateHex) {
+
+  }
+
+  public String aes(String pTextHex, String keyHex) {
+    aesRoundKeys(keyHex);
+    
   }
 }
