@@ -28,7 +28,7 @@ public class Driver {
     String key = input.nextLine();
     String text = input.nextLine();
     AEScipher cipher = new AEScipher();
-    String cText = cipher.aes(text,key);
-    System.out.println(cText);
+    String cTextHex = cipher.aes(text,key);
+    System.out.println(cTextHex);
   }
 }
