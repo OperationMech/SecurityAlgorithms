@@ -49,9 +49,9 @@ public class AEScipher {
     "4A","94","33","66","CC","83","1D","3A","74","E8",
     "CB"};
   // State Matrix
-  private Byte[][] stateMatrix = new Byte[4][4];
+  private byte[][] stateMatrix = new byte[4][4];
   // RoundKey XOR Matrix
-  private Byte[][] keyInXOR = new Byte[4][4];
+  private byte[][] keyInXOR = new byte[4][4];
 
   /**
    *
@@ -189,13 +189,13 @@ public class AEScipher {
    * @param sHex: The state matrix.
    * @param keyHex: The round key matrix.
    *
-   * @return Byte matrix: The XOR result state matrix.
+   * @return byte matrix: The XOR result state matrix.
    */
-  private Byte[][] aesStateXOR(Byte[][] sHex, Byte[][] keyHex) {
-    Byte[][] output = new Byte[4][4];
+  private byte[][] aesStateXOR(byte[][] sHex, byte[][] keyHex) {
+    byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
-        output[rows][cols] = sHex[rows][cols] ^ keyHex[rows][cols];
+        output[rows][cols] = (byte)(sHex[rows][cols] ^ keyHex[rows][cols]);
       }
     }
     return output;
@@ -208,11 +208,11 @@ public class AEScipher {
    *
    * @param inStateHex: The state matrix input.
    *
-   * @return Byte[][]: The resultant state matrix.
+   * @return byte[][]: The resultant state matrix.
    */
-  private Byte[][] aesNibbleSub(Byte[][] inStateHex) {
+  private byte[][] aesNibbleSub(byte[][] inStateHex) {
     String lookupVal = "";
-    Byte[][] output = new Byte[4][4];
+    byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
         if(inStateHex[rows][cols] < 16) {
@@ -232,11 +232,11 @@ public class AEScipher {
    *
    * @param inStateHex: The state matrix input.
    *
-   * @return Byte[][]: The resultant state matrix.
+   * @return byte[][]: The resultant state matrix.
    */
-  private Byte[][] aesShiftRow(Byte[][] inStateHex) {
+  private byte[][] aesShiftRow(byte[][] inStateHex) {
     int row = 1;
-    Byte[][] output = new Byte[4][4];
+    byte[][] output = new byte[4][4];
     for(int col = 0; col < 4; col++ ) {
       if(col == 0) {
         output[row][col+3] = inStateHex[row][col];
@@ -262,10 +262,10 @@ public class AEScipher {
    *
    * @param inStateHex: The state matrix input.
    *
-   * @return Byte[][]: The resultant state matrix.
+   * @return byte[][]: The resultant state matrix.
    */
-  private Byte[][] aesMixColumn(Byte[][] inStateHex) {
-    Byte[][] output = new Byte[4][4];
+  private byte[][] aesMixColumn(byte[][] inStateHex) {
+    byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
       output[rows] = gfMult(inStateHex[rows]);
     }
@@ -278,24 +278,24 @@ public class AEScipher {
    *
    * @param inVecHex: Column for mixing.
    *
-   * @return Byte[]: Mixed column.
+   * @return byte[]: Mixed column.
    */
-  private Byte[] gfMult(Byte[] inVecHex) {
-    Byte[] output = new Byte[4];
-    Byte[] copy = new Byte[4];
-    Byte[] gfFactor = new Byte[4];
-    Byte overflow;
+  private byte[] gfMult(byte[] inVecHex) {
+    byte[] output = new byte[4];
+    byte[] copy = new byte[4];
+    byte[] gfFactor = new byte[4];
+    byte overflow;
     int overflowVal = 0x1b;
     for(int index = 0; index < 4; index++) {
       copy[index] = inVecHex[index];
-      overflow = inVecHex[index] >> 7;
-      gfFactor[index] = inVecHex[index] << 1;
-      gfFactor[index] ^=  overflow & overflowVal;
+      overflow = (byte)(inVecHex[index] >> 7);
+      gfFactor[index] = (byte)(inVecHex[index] << 1);
+      gfFactor[index] = (byte)(gfFactor[index] ^ overflow & overflowVal);
     }
-    output[0] = gfFactor[0] ^ (gfFactor[1] ^ copy[1]) ^ copy[2] ^ copy[3];
-    output[1] = copy[0] ^ gfFactor[1] ^ (gfFactor[2] ^ copy[2]) ^ copy[3];
-    output[2] = copy[0] ^ copy[1] ^ gfFactor[2] ^ (gfFactor[3] ^ copy[3]);
-    output[3] = (gfFactor[0] ^ copy[0]) ^ copy[1] ^ copy[2] ^ gfFactor[3];
+    output[0] = (byte)(gfFactor[0] ^ (gfFactor[1] ^ copy[1]) ^ copy[2] ^ copy[3]);
+    output[1] = (byte)(copy[0] ^ gfFactor[1] ^ (gfFactor[2] ^ copy[2]) ^ copy[3]);
+    output[2] = (byte)(copy[0] ^ copy[1] ^ gfFactor[2] ^ (gfFactor[3] ^ copy[3]));
+    output[3] = (byte)((gfFactor[0] ^ copy[0]) ^ copy[1] ^ copy[2] ^ gfFactor[3]);
     return output;
   }
 
@@ -377,9 +377,9 @@ public class AEScipher {
    *
    * @param toByte: The hex string pair.
    *
-   * @return Byte: The Byte value of the input string.
+   * @return byte: The byte value of the input string.
    */
-  private Byte stringToByte(String toByte) {
-    return Byte.decode(toByte);
+  private byte stringToByte(String toByte) {
+    return Byte.decode(toByte).byteValue();
   }
 }
