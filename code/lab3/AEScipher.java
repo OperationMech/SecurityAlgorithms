@@ -255,7 +255,7 @@ public class AEScipher {
     }
     row++;
     for(int col = 0; col < 4; col++) {
-      output[row][col+1%3] = inStateHex[row][col];
+      output[row][(col+1)%4] = inStateHex[row][col];
     }
     return output;
   }
