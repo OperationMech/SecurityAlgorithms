@@ -327,7 +327,9 @@ public class AEScipher {
       while(keyColumn < 4) {
         int keyRow = 0;
         while(keyRow < 4) {
-          keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+          keyInXOR[keyColumn][keyRow] =
+            (byte)((stringToByte(WMatrix[keyRow][WMatrixColumn].substring(0,1)) * 16) +
+                    stringToByte(WMatrix[keyRow][WMatrixColumn].substring(1,2)));
           keyRow++;
         }
         keyColumn++;
@@ -342,7 +344,9 @@ public class AEScipher {
     while(keyColumn < 4) {
       int keyRow = 0;
       while(keyRow < 4) {
-        keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+        keyInXOR[keyColumn][keyRow] =
+          (byte)((stringToByte(WMatrix[keyRow][WMatrixColumn].substring(0,1)) * 16) +
+                  stringToByte(WMatrix[keyRow][WMatrixColumn].substring(1,2)));
         keyRow++;
       }
       keyColumn++;
@@ -355,7 +359,9 @@ public class AEScipher {
     while(keyColumn < 4) {
       int keyRow = 0;
       while(keyRow < 4) {
-        keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+        keyInXOR[keyColumn][keyRow] =
+          (byte)((stringToByte(WMatrix[keyRow][WMatrixColumn].substring(0,1)) * 16) +
+                stringToByte(WMatrix[keyRow][WMatrixColumn].substring(1,2)));
         keyRow++;
       }
       keyColumn++;
@@ -383,6 +389,6 @@ public class AEScipher {
    * @return byte: The byte value of the input string.
    */
   private byte stringToByte(String toByte) {
-    return Byte.parseByte(toByte);
+    return Byte.parseByte(toByte,16);
   }
 }
