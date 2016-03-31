@@ -217,9 +217,9 @@ public class AEScipher {
       for(int cols = 0; cols < 4; cols++) {
         System.out.println(inStateHex[rows][cols]);
         if(inStateHex[rows][cols] < 16) {
-          lookupVal = "0" + String.toString(inStateHex[rows][cols]);
+          lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols] & 0xFF);
         } else {
-          lookupVal = String.toString(inStateHex[rows][cols]);
+          lookupVal = Integer.toHexString(inStateHex[rows][cols] & 0xFF);
         }
         lookupVal = lookupVal.toUpperCase();
         System.out.println(lookupVal);
