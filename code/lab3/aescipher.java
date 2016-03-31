@@ -201,6 +201,15 @@ public class AEScipher {
     return output;
   }
 
+  /**
+   *
+   * aesNibbleSub method uses the SBox lookup table to
+   *              scramble the state matrix.
+   *
+   * @param inStateHex: The state matrix input.
+   *
+   * @return byte[][]: The resultant state matrix.
+   */
   private byte[][] aesNibbleSub(byte[][] inStateHex) {
     String lookupVal = "";
     byte[][] output = new byte[4][4];
@@ -217,6 +226,14 @@ public class AEScipher {
     return output;
   }
 
+  /**
+   *
+   * aesShiftRow method shifts the rows by 1, then 2, and finally 3.
+   *
+   * @param inStateHex: The state matrix input.
+   *
+   * @return byte[][]: The resultant state matrix.
+   */
   private byte[][] aesShiftRow(byte[][] inStateHex) {
     int row = 1;
     byte[][] output = new byte[4][4];
@@ -239,6 +256,14 @@ public class AEScipher {
     return output;
   }
 
+  /**
+   *
+   * aesMixColumn method mixes the columns in the state matrix.
+   *
+   * @param inStateHex: The state matrix input.
+   *
+   * @return byte[][]: The resultant state matrix.
+   */
   private byte[][] aesMixColumn(byte[][] inStateHex) {
     byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
@@ -247,6 +272,14 @@ public class AEScipher {
     return output;
   }
 
+  /**
+   *
+   * gfMult method for AES mix column matrix math.
+   *
+   * @param inVecHex: Column for mixing.
+   *
+   * @return byte[]: Mixed column.
+   */
   private byte[] gfMult(byte[] inVecHex) {
     byte[] output = new byte[4];
     byte[] copy = new byte[4];
@@ -271,7 +304,6 @@ public class AEScipher {
    * aes method for single block encryption.
    *
    * @param pTextHex: The input plaintext.
-   *
    * @param keyHex: The input key for AES.
    *
    * @return String: The string form of the single block ciphertext.
@@ -350,6 +382,4 @@ public class AEScipher {
   private byte stringToByte(String toByte) {
     return ((Byte) Integer.parseInt(toByte, 16)).byteValue();
   }
-
-
 }

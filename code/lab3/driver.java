@@ -25,11 +25,10 @@ public class Driver {
    */
   public static void main(String args[]) {
     Scanner input = new Scanner(System.in);
-    String key = input.next();
+    String key = input.nextLine();
+    String text = input.nextLine();
     AEScipher cipher = new AEScipher();
-    String[] roundKeysHex = cipher.aesRoundKeys(key);
-    for(String outKey : roundKeysHex) {
-      System.out.println(outKey);
-    }
+    String cText = cipher.aes(text,key);
+    System.out.println(cText);
   }
 }
