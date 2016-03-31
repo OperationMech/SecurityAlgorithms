@@ -375,9 +375,9 @@ public class AEScipher {
     for(int i = 0; i < 4; i++) {
       for(int j = 0; j < 4; j++) {
         if(stateMatrix[i][j] < 16 && stateMatrix[i][j] > -1) {
-          output += "0" + Integer.toHexString(stateMatrix[i][j]);
+          output += "0" + Integer.toHexString(stateMatrix[i][j]).toUpperCase();
         } else {
-          output += Integer.toHexString(stateMatrix[i][j] & 0xFF);
+          output += Integer.toHexString(stateMatrix[i][j] & 0xFF).toUpperCase();
         }
       }
     }
