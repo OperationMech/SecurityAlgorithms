@@ -313,8 +313,8 @@ public class AEScipher {
     aesRoundKeys(keyHex);
     int index = 0;
     for(int i = 0; i < pTextHex.length()-1; i+=2) {
-      stateMatrix[index][i%8] = (stringToByte(pTextHex.substring(i,i+1)) * 16) +
-                                stringToByte(pTextHex.substring(i+1,i+2));
+      stateMatrix[index][i%8] = (byte)((stringToByte(pTextHex.substring(i,i+1)) * 16) +
+                                stringToByte(pTextHex.substring(i+1,i+2)));
       if(i%8 == 0 && i != 0) {
         index++;
       }
