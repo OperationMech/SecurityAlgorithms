@@ -195,7 +195,7 @@ public class AEScipher {
     byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
-        output = sHex[rows][cols] ^ keyHex[rows][cols];
+        output[rows][cols] = sHex[rows][cols] ^ keyHex[rows][cols];
       }
     }
     return output;
