@@ -1,0 +1,25 @@
+10 pts
+
+Correctness:
+
+- The program produces correct output.
+
+- The program produces output in the correct format.
+
+
+Style:
+
+- Correct indentation
+
+- Good block comments
+
+
+Efficiency and Other Comments:
+
+- When searching the Sbox or Rcon you are constantly parsing integers. Perhaps
+  it would be more efficient to have them as integers already and save
+  constantly parsing.
+
+
+
+- Dr. Rivas
