@@ -215,14 +215,12 @@ public class AEScipher {
     byte[][] output = new byte[4][4];
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
-        System.out.println(inStateHex[rows][cols]);
         if(inStateHex[rows][cols] < 16 && inStateHex[rows][cols] > -1) {
           lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols]);
         } else {
           lookupVal = Integer.toHexString(inStateHex[rows][cols] & 0xFF);
         }
         lookupVal = lookupVal.toUpperCase();
-        System.out.println(lookupVal);
         lookupVal = aesSBox(lookupVal);
         output[rows][cols] =
           (byte)((stringToByte(lookupVal.substring(0,1)) * 16) +
@@ -257,7 +255,7 @@ public class AEScipher {
     }
     row++;
     for(int col = 0; col < 4; col++) {
-      output[row][col+1%4] = inStateHex[row][col];
+      output[row][col+1%3] = inStateHex[row][col];
     }
     return output;
   }
