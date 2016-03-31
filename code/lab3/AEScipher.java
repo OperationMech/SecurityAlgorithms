@@ -221,6 +221,7 @@ public class AEScipher {
           lookupVal = Integer.toHexString(inStateHex[rows][cols]);
         }
         lookupVal = lookupVal.toUpperCase();
+        System.out.println(lookupVal);
         lookupVal = aesSBox(lookupVal);
         output[rows][cols] =
           (byte)((stringToByte(lookupVal.substring(0,1)) * 16) +
