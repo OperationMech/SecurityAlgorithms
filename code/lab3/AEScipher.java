@@ -216,7 +216,7 @@ public class AEScipher {
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
         System.out.println(inStateHex[rows][cols]);
-        if(inStateHex[rows][cols] < 16 && inStateHex > -1) {
+        if(inStateHex[rows][cols] < 16 && inStateHex[rows][cols] > -1) {
           lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols]);
         } else {
           lookupVal = Integer.toHexString(inStateHex[rows][cols] & 0xFF);
@@ -376,10 +376,10 @@ public class AEScipher {
     stateMatrix = aesStateXOR(stateMatrix,keyInXOR);
     for(int i = 0; i < 4; i++) {
       for(int j = 0; j < 4; j++) {
-        if(stateMatrix[i][j] < 16) {
+        if(stateMatrix[i][j] < 16 && > -1) {
           output += "0" + Integer.toHexString(stateMatrix[i][j]);
         } else {
-          output += Integer.toHexString(stateMatrix[i][j]);
+          output += Integer.toHexString(stateMatrix[i][j] & 0xFF);
         }
       }
     }
