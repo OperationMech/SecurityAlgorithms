@@ -220,9 +220,9 @@ public class AEScipher {
         } else {
           lookupVal = Integer.toHexString(inStateHex[rows][cols]);
         }
-        lookupVal = aesSBox(aesSBox(lookupVal.toUpperCase());
+        lookupVal = aesSBox(lookupVal.toUpperCase());
         output[rows][cols] =
-          (byte)(stringToByte(lookupVal.substring(0,1)) * 16 +
+          (byte)((stringToByte(lookupVal.substring(0,1)) * 16) +
                  stringToByte(lookupVal.substring(1,2)));
       }
     }
