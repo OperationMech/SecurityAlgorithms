@@ -376,7 +376,7 @@ public class AEScipher {
     stateMatrix = aesStateXOR(stateMatrix,keyInXOR);
     for(int i = 0; i < 4; i++) {
       for(int j = 0; j < 4; j++) {
-        if(stateMatrix[i][j] < 16 && > -1) {
+        if(stateMatrix[i][j] < 16 && stateMatrix[i][j] > -1) {
           output += "0" + Integer.toHexString(stateMatrix[i][j]);
         } else {
           output += Integer.toHexString(stateMatrix[i][j] & 0xFF);
