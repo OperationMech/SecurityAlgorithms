@@ -380,6 +380,6 @@ public class AEScipher {
    * @return Byte: The Byte value of the input string.
    */
   private Byte stringToByte(String toByte) {
-    return ((Byte) Integer.parseInt(toByte, 16));
+    return Byte.decode(toByte);
   }
 }
