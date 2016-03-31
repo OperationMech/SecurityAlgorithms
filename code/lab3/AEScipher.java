@@ -216,8 +216,8 @@ public class AEScipher {
     for(int rows = 0; rows < 4; rows++) {
       for(int cols = 0; cols < 4; cols++) {
         System.out.println(inStateHex[rows][cols]);
-        if(inStateHex[rows][cols] < 16) {
-          lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols] & 0xFF);
+        if(inStateHex[rows][cols] < 16 && inStateHex > -1) {
+          lookupVal = "0" + Integer.toHexString(inStateHex[rows][cols]);
         } else {
           lookupVal = Integer.toHexString(inStateHex[rows][cols] & 0xFF);
         }
