@@ -211,7 +211,7 @@ public class AEScipher {
         } else {
           lookupVal = Integer.toHexString(inStateHex[rows][cols]);
         }
-        output[rows][cols] = aesSBox(lookupVal.toUpperCase());
+        output[rows][cols] = stringToByte(aesSBox(lookupVal.toUpperCase()));
       }
     }
     return output;
@@ -234,13 +234,17 @@ public class AEScipher {
     }
     row++;
     for(int col = 0; col < 4; col++) {
-      output[row][col+1%4] = output[row][col];
+      output[row][col+1%4] = inStateHex[row][col];
     }
     return output;
   }
 
   private byte[][] aesMixColumn(byte[][] inStateHex) {
     byte[][] output = new byte[4][4];
+    for(int rows = 0; rows < 4; rows++) {
+      output[rows] = gfMult(inStateHex[rows]);
+    }
+    return output;
   }
 
   private byte[] gfMult(byte[] inVecHex) {
@@ -259,19 +263,88 @@ public class AEScipher {
     output[1] = copy[0] ^ gfFactor[1] ^ (gfFactor[2] ^ copy[2]) ^ copy[3];
     output[2] = copy[0] ^ copy[1] ^ gfFactor[2] ^ (gfFactor[3] ^ copy[3]);
     output[3] = (gfFactor[0] ^ copy[0]) ^ copy[1] ^ copy[2] ^ gfFactor[3];
+    return output;
   }
 
+  /**
+   *
+   * aes method for single block encryption.
+   *
+   * @param pTextHex: The input plaintext.
+   *
+   * @param keyHex: The input key for AES.
+   *
+   * @return String: The string form of the single block ciphertext.
+   */
   public String aes(String pTextHex, String keyHex) {
+    String output = "";
     aesRoundKeys(keyHex);
-    for(int round = 0; round < 9; round++) {
-
+    int index = 0;
+    for(int i = 0; i < pTextHex.length()-1; i++) {
+      stateMatrix[index][i%4] = stringToByte(pTextHex.substring(i,i+1));
+      if(i%4 == 0 && i != 0) {
+        index++;
+      }
     }
+    int WMatrixColumn = 0;
+    for(int round = 0; round < 9; round++) {
+      int keyColumn = 0;
+      while(keyColumn < 4) {
+        int keyRow = 0;
+        while(keyRow < 4) {
+          keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+          keyRow++;
+        }
+        keyColumn++;
+        WMatrixColumn++;
+      }
+      stateMatrix = aesStateXOR(stateMatrix,keyInXOR);
+      stateMatrix = aesNibbleSub(stateMatrix);
+      stateMatrix = aesShiftRow(stateMatrix);
+      stateMatrix = aesMixColumn(stateMatrix);
+    }
+    int keyColumn = 0;
+    while(keyColumn < 4) {
+      int keyRow = 0;
+      while(keyRow < 4) {
+        keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+        keyRow++;
+      }
+      keyColumn++;
+      WMatrixColumn++;
+    }
+    stateMatrix = aesStateXOR(stateMatrix, keyInXOR);
+    stateMatrix = aesNibbleSub(stateMatrix);
+    stateMatrix = aesShiftRow(stateMatrix);
+    keyColumn = 0;
+    while(keyColumn < 4) {
+      int keyRow = 0;
+      while(keyRow < 4) {
+        keyInXOR[keyColumn][keyRow] = stringToByte(WMatrix[keyRow][WMatrixColumn]);
+        keyRow++;
+      }
+      keyColumn++;
+      WMatrixColumn++;
+    }
+    stateMatrix = aesStateXOR(stateMatrix,keyInXOR);
+    for(int i = 0; i < 4; i++) {
+      for(int j = 0; j < 4; j++) {
+        if(stateMatrix[i][j] < 16) {
+          output =+ "0" + Integer.toHexString(stateMatrix[i][j]);
+        } else {
+          output =+ Integer.toHexString(stateMatrix[i][j]);
+        }
+      }
+    }
+    return output;
   }
 
   /**
    *
    * stringToByte method converts a hex string pair to a byte.
+   *
    * @param toByte: The hex string pair.
+   *
    * @return byte: The byte value of the input string.
    */
   private byte stringToByte(String toByte) {
