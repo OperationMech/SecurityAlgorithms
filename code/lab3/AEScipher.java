@@ -238,7 +238,7 @@ public class AEScipher {
     int row = 1;
     byte[][] output = new byte[4][4];
     for(int col = 0; col < 4; col++ ) {
-      if(col = 0) {
+      if(col == 0) {
         output[row][col+3] = inStateHex[row][col];
       } else {
         output[row][col-1] = inStateHex[row][col];
@@ -362,9 +362,9 @@ public class AEScipher {
     for(int i = 0; i < 4; i++) {
       for(int j = 0; j < 4; j++) {
         if(stateMatrix[i][j] < 16) {
-          output =+ "0" + Integer.toHexString(stateMatrix[i][j]);
+          output += "0" + Integer.toHexString(stateMatrix[i][j]);
         } else {
-          output =+ Integer.toHexString(stateMatrix[i][j]);
+          output += Integer.toHexString(stateMatrix[i][j]);
         }
       }
     }
@@ -380,6 +380,6 @@ public class AEScipher {
    * @return byte: The byte value of the input string.
    */
   private byte stringToByte(String toByte) {
-    return ((Byte) Integer.parseInt(toByte, 16)).byteValue();
+    return ((byte) Integer.parseInt(toByte, 16));
   }
 }
