@@ -312,10 +312,12 @@ public class AEScipher {
     String output = "";
     aesRoundKeys(keyHex);
     int index = 0;
+    int count = 0;
     for(int i = 0; i < pTextHex.length()-1; i+=2) {
-      stateMatrix[index][i%8] = (byte)((stringToByte(pTextHex.substring(i,i+1)) * 16) +
+      stateMatrix[index][i] = (byte)((stringToByte(pTextHex.substring(i,i+1)) * 16) +
                                 stringToByte(pTextHex.substring(i+1,i+2)));
-      if(i%8 == 0 && i != 0) {
+      count++;
+      if(count%4 == 0 && count != 0) {
         index++;
       }
     }
