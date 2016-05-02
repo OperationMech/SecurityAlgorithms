@@ -294,7 +294,8 @@ public class MatrixCipher {
 
   public String decrypt(char[] key, char[] initVector, char[] message) {
     String output = "";
-    byte[] localVectorBytes = new byte[(initVector / 2)];
+    byte[] localVectorBytes = new byte[(initVector.length / 2)];
+    int j = 0;
     for (int i = 0; i < localVectorBytes.length; i = i + 2, j++) {
       char[] localVecChars = {initVector[i], initVector[i + 1]};
       localVectorBytes[j] = bitwiseEndianShift(charByteToByte(localVecChars, 16));
