@@ -8,8 +8,6 @@
  * @abstract: Entry point Driver class file.
  */
 
-import com.sun.javaws.Main;
-
 import java.util.Scanner;
 
 /**

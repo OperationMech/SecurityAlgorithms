@@ -136,7 +136,9 @@ public class MatrixCipher {
     );
     originalKey[33] = flip180;
     roundKeys.add(
-      xorMatrices(roundKeys.size() - 1, applyTriangleMatrix(originalKey))
+      xorMatrices(roundKeys.get(roundKeys.size() - 1),
+        applyTriangleMatrix(originalKey)
+      )
     );
     originalKey[34] = applyLowerTriangle;
     roundKeys.add(
