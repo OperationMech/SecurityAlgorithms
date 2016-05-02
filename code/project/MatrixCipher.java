@@ -18,7 +18,7 @@ public class MatrixCipher {
   // Local class variables.
   private byte[] stateMatrix = new byte[36];
   private byte[] originalKey = new byte[36];
-  private byte[] text = new byte[];
+  private byte[] text = null;
   private List<byte[]> roundKeys = new ArrayList<>();
   private static final byte[] TRIANGLE_MATRIX = {
     1, 1, 1, 1, 1, 1,
@@ -78,7 +78,7 @@ public class MatrixCipher {
    * @param radix, The numeric range for the conversion.
    * @return byte, The byte from the characters.
    */
-  private byte charByteToByte(char[] nybbles, radix) {
+  private byte charByteToByte(char[] nybbles, int radix) {
     byte first = (byte) Character.digit(nybbles[0], radix);
     return (byte) ((first << 4) + Character.digit(nybbles[1], radix));
   }
@@ -173,7 +173,7 @@ public class MatrixCipher {
    * @return byte[], The output matrix after Matrix input & Triangle.
    */
   private byte[] applyTriangleMatrix(byte[] input) {
-    byte[] output = new byte[input.length]
+    byte[] output = new byte[input.length];
     for (int i = 0; i < input.length; i++) {
       output[i] = input[i] & TRIANGLE_MATRIX[i];
     }
@@ -217,22 +217,22 @@ public class MatrixCipher {
    */
   private byte[] rotateMatrixRight(byte[] input) {
     byte[] output = new byte[input.length];
-    for (int i = 30; i < 36 i++){
+    for (int i = 30; i < 36; i++){
       output[35 - (i % 6)] = input[i];
     }
-    for (int i = 24; i < 30 i++){
+    for (int i = 24; i < 30; i++){
       output[29 - (i % 6)] = input[i];
     }
-    for (int i = 18; i < 24 i++){
+    for (int i = 18; i < 24; i++){
       output[23 - (i % 6)] = input[i];
     }
-    for (int i = 12; i < 18 i++){
+    for (int i = 12; i < 18; i++){
       output[17 - (i % 6)] = input[i];
     }
-    for (int i = 6; i < 12 i++){
+    for (int i = 6; i < 12; i++){
       output[11 - (i % 6)] = input[i];
     }
-    for (int i = 0; i < 6 i++){
+    for (int i = 0; i < 6; i++){
       output[5 - (i % 6)] = input[i];
     }
     return output;
