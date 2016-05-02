@@ -262,8 +262,8 @@ public class MatrixCipher {
     byte[] localVectorBytes = new byte[(initVector.length / 2)];
     int j = 0;
     for (int i = 0; i < localVectorBytes.length; i = i + 2, j++) {
-      char[] localVecChars = {initVector[i], initVector[i + 1]};
-      localVectorBytes[j] = bitwiseEndianShift(charByteToByte(localVecChars));
+      char[] localVecChars = {initVector[i], initVector[i+1]};
+      localVectorBytes[j] = bitwiseEndianShift(charByteToByte(localVecChars, 16));
     }
 
     setOrigKey(key);
@@ -297,7 +297,7 @@ public class MatrixCipher {
     byte[] localVectorBytes = new byte[(initVector / 2)];
     for (int i = 0; i < localVectorBytes.length; i = i + 2, j++) {
       char[] localVecChars = {initVector[i], initVector[i + 1]};
-      localVectorBytes[j] = bitwiseEndianShift(charByteToByte(localVecChars));
+      localVectorBytes[j] = bitwiseEndianShift(charByteToByte(localVecChars, 16));
     }
 
     setOrigKey(key);
