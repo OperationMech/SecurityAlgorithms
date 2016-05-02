@@ -177,7 +177,7 @@ public class MatrixCipher {
   private byte[] applyTriangleMatrix(byte[] input) {
     byte[] output = new byte[input.length];
     for (int i = 0; i < input.length; i++) {
-      output[i] = input[i] & TRIANGLE_MATRIX[i];
+      output[i] = (byte) (input[i] & TRIANGLE_MATRIX[i]);
     }
     return output;
   }
