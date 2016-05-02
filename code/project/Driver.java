@@ -42,11 +42,13 @@ public class Driver {
       try {
         MatrixCipher matrixCiph = new MatrixCipher();
         System.out.print(matrixCiph.encrypt(charKey, charIV, charText));
+      } catch {
       }
     } else if(args[0].toLowerCase().equals("-d") ||
       args[0].toLowerCase().equals("-decrypt")) {
       // Safety try block for destruction of the cipher.
       try {
+      } catch {
       }
     } else {
       System.out.println("USAGE: driver -e/d/encrypt/decrypt << <input.txt>.");
