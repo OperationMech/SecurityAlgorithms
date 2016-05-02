@@ -51,7 +51,7 @@ public class MatrixCipher {
    */
   private void setOrigKey(char[] input) {
     int i = 0;
-    j = 0;
+    int j = 0;
     byte[] localBytes = new byte[(input.length / 2)];
     while (i < input.length) {
       char[] localByteChars = {input[i], input[i + 1]};
@@ -59,7 +59,7 @@ public class MatrixCipher {
       j++;
       i = i + 2;
     }
-    for (int i = 0; i < localBytes.length; i++) {
+    for (i = 0; i < localBytes.length; i++) {
       originalKey[i] = localBytes[i];
     }
     roundKeys.add(originalKey);
