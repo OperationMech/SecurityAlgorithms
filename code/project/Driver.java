@@ -27,6 +27,7 @@ public class Driver {
     String argument = input.nextLine();
     String text = input.nextLine();
 
+    System.out.println(text);
     char[] charKey = processString(key);
     char[] charIV = processString(initVector);
     char[] charText = processString(text);
