@@ -51,7 +51,7 @@ public class Driver {
 
   /**
    *
-   * processString method for turning a String into a character array.
+   * processString method for turning a string into a character array.
    * @param input, The input string to convert.
    * @return char[], The resultant character array.
    */
