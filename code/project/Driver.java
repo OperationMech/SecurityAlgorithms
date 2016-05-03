@@ -45,7 +45,7 @@ public class Driver {
       } catch (Exception e) {
       }
     } else {
-      System.out.println("USAGE: Driver < <input.txt>.");
+      System.out.println("USAGE: Driver < <input.txt> (use line 3 for argument).");
     }
   }
 

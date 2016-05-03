@@ -352,10 +352,10 @@ public class MatrixCipher {
         stateMatrix = xorMatrices(roundKeys.get(2), stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(1), stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(0), stateMatrix);
+        localVectorBytes = stateMatrix;
         for(j = 0; j < 32; j++) {
           stateMatrix[j] = bitwiseEndianShift(stateMatrix[j]);
         }
-        localVectorBytes = stateMatrix;
         output = output + bytesToString(stateMatrix);
         blocks++;
       }
