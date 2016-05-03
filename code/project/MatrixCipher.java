@@ -305,6 +305,25 @@ public class MatrixCipher {
     setText(message);
 
     generateRoundKeys();
+    int i = 0;
+    int blocks = 0;
+    while ( blocks <  (text.length / 32)) {
+      stateMatrix[i % 32] = text[i];
+      if(i % 32 == 0) {
+        stateMatrix = xorMatrices(roundKeys.get(5), stateMatrix);
+        stateMatrix = xorMatrices(localVectorBytes, stateMatrix);
+        stateMatrix = xorMatrices(roundKeys.get(4), stateMatrix);
+        stateMatrix = xorMatrices(roundKeys.get(3), stateMatrix);
+        stateMatrix = xorMatrices(roundKeys.get(2), stateMatrix);
+        stateMatrix = xorMatrices(roundKeys.get(1), stateMatrix);
+        stateMatrix = xorMatrices(roundKeys.get(0), stateMatrix);
+        for(int j = 0; j < 32; j++) {
+          stateMatrix[j] = bitwiseEndianShift(stateMatrix[j]));
+        }
+        output = output + bytesToString(stateMatrix);
+        blocks++;
+      }
+    }
 
     return output;
   }
