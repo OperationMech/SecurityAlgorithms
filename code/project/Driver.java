@@ -55,7 +55,7 @@ public class Driver {
    * @return char[], The resultant character array.
    */
   public static char[] processString(String input) {
-    char[] out = new char[1];
+    char[] out = new char[input.length()];
     input.getChars(0, input.length(), out, 0);
     return out;
   }
