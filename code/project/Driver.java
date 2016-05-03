@@ -44,7 +44,7 @@ public class Driver {
       } catch (Exception e) {
       }
     } else {
-      System.out.println("USAGE: driver [e/d/encrypt/decrypt] << <input.txt>.");
+      System.out.println("USAGE: Driver < <input.txt>.");
     }
   }
 
