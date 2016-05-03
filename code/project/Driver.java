@@ -25,28 +25,29 @@ public class Driver {
     String key = input.nextLine();
     String initVector = input.nextLine();
     String text = "";
-    while(input.next() != null) {
+    while(input.hasNext()) {
       text = text + input.nextLine();
     }
+
     char[] charKey = processString(key);
     char[] charIV = processString(initVector);
     char[] charText = processString(text);
-    if(args[0].toLowerCase().equals("-e") ||
-       args[0].toLowerCase().equals("-encrypt")) {
+    if(args[0].toLowerCase().equals("e") ||
+       args[0].toLowerCase().equals("encrypt")) {
       // Safety try block for destruction of the cipher.
       try {
         MatrixCipher matrixCiph = new MatrixCipher();
         System.out.print(matrixCiph.encrypt(charKey, charIV, charText));
       } catch (Exception e) {
       }
-    } else if(args[0].toLowerCase().equals("-d") ||
-      args[0].toLowerCase().equals("-decrypt")) {
+    } else if(args[0].toLowerCase().equals("d") ||
+      args[0].toLowerCase().equals("decrypt")) {
       // Safety try block for destruction of the cipher.
       try {
       } catch (Exception e) {
       }
     } else {
-      System.out.println("USAGE: driver -e/d/encrypt/decrypt << <input.txt>.");
+      System.out.println("USAGE: driver [e/d/encrypt/decrypt] << <input.txt>.");
     }
   }
 
