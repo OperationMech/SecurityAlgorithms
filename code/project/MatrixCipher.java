@@ -53,13 +53,10 @@ public class MatrixCipher {
    */
   private void setTextDecrypt(char[] input) {
     int i = 0;
-    int j = 0;
-    byte[] localBytes = new byte[(input.length / 2)];
+    byte[] localBytes = new byte[input.length];
     while (i < input.length) {
-      char[] localByteChars = {input[i], input[i + 1]};
-      localBytes[j] = charByteToByte(localByteChars, 16);
-      j++;
-      i = i + 2;
+      localBytes[i] = (byte) Character.getNumericValue(input[i]);
+      i++;
     }
     text = localBytes;
   }
