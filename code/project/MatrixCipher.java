@@ -18,7 +18,7 @@ public class MatrixCipher {
   // Local class variables.
   private byte[] stateMatrix = new byte[36];
   private byte[] originalKey = new byte[36];
-  private byte[] text = null;
+  private byte[] text = {};
   private List<byte[]> roundKeys = new ArrayList<>();
   private static final byte[] TRIANGLE_MATRIX = {
     1, 1, 1, 1, 1, 1,
@@ -39,6 +39,22 @@ public class MatrixCipher {
     while (i < input.length) {
       char[] localByteChars = {input[i], input[i + 1]};
       localBytes[i] = bitwiseEndianShift(charByteToByte(localByteChars, 16));
+      i = i + 2;
+    }
+    text = localBytes;
+  }
+
+  /**
+   * setTextDecrypt method sets the private text field.
+   *
+   * @param input, The character array input.
+   */
+  private void setTextDecrypt(char[] input) {
+    int i = 0;
+    byte[] localBytes = new byte[(input.length / 2)];
+    while (i < input.length) {
+      char[] localByteChars = {input[i], input[i + 1]};
+      localBytes[i] = charByteToByte(localByteChars, 16);
       i = i + 2;
     }
     text = localBytes;
@@ -122,6 +138,9 @@ public class MatrixCipher {
     return (byte) (left ^ right);
   }
 
+  /**
+   * generateRoundKeys method creates the six round keys used in encryption / decryption.
+   */
   private void generateRoundKeys() {
     byte rotateLeft = 1;
     byte flip180 = 2;
@@ -292,6 +311,14 @@ public class MatrixCipher {
     return output;
   }
 
+  /**
+   *
+   * decrypt method for MatrixCipher.
+   * @param key, The key for decrypting.
+   * @param initVector, The cbc-mode initializing vector.
+   * @param message, The ciphertext to be decrypted.
+   * @return String, The plaintext which is decrypted.
+   */
   public String decrypt(char[] key, char[] initVector, char[] message) {
     String output = "";
     byte[] localVectorBytes = new byte[(initVector.length / 2)];
@@ -302,7 +329,7 @@ public class MatrixCipher {
     }
 
     setOrigKey(key);
-    setText(message);
+    setTextDecrypt(message);
 
     generateRoundKeys();
     int i = 0;
@@ -324,7 +351,6 @@ public class MatrixCipher {
         blocks++;
       }
     }
-
     return output;
   }
 }

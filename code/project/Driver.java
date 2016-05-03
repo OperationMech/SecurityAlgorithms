@@ -34,12 +34,14 @@ public class Driver {
       // Safety try block for destruction of the cipher.
       try {
         MatrixCipher matrixCiph = new MatrixCipher();
-        System.out.print(matrixCiph.encrypt(charKey, charIV, charText));
+        System.out.println(matrixCiph.encrypt(charKey, charIV, charText));
       } catch (Exception e) {
       }
     } else if(argument.equals("decrypt")) {
       // Safety try block for destruction of the cipher.
       try {
+        MatrixCipher matrixCiph = new MatrixCipher();
+        System.out.println(matrixCiph.decrypt(charKey, charIV, charText));
       } catch (Exception e) {
       }
     } else {
