@@ -8,6 +8,7 @@
  * @abstract: Entry point Driver class file.
  */
 
+import java.lang.Character;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,13 +36,10 @@ public class MatrixCipher {
    */
   private void setText(char[] input) {
     int i = 0;
-    int j = 0;
-    byte[] localBytes = new byte[(input.length / 2)];
+    byte[] localBytes = new byte[input.length];
     while (i < input.length) {
-      char[] localByteChars = {input[i], input[i + 1]};
-      localBytes[j] = bitwiseEndianShift(charByteToByte(localByteChars, 16));
-      j++;
-      i = i + 2;
+      localBytes[j] = bitwiseEndianShift(Character.getNumericValue(input[i]));
+      i++;
     }
     text = localBytes;
   }
