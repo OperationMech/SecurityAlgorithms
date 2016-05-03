@@ -263,11 +263,11 @@ public class MatrixCipher {
 
   /**
    *
-   * bytesToString method converts an input byte array into a string.
+   * bytesToHex method converts an input byte array into a hex string.
    * @param input, The input byte array to convert.
-   * @return String, The output string from the bytes.
+   * @return String, The output hex string from the bytes.
    */
-  private String bytesToString(byte[] input) {
+  private String bytesToHex(byte[] input) {
     String output = "";
     for (int i = 0; i < input.length; i++) {
       output = output + Integer.toHexString((byte) input[i]).toUpperCase();
