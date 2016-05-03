@@ -16,7 +16,7 @@ import java.util.Scanner;
  */
 public class Driver {
   /**
-   *
+   * main entrypoint function.
    * @param args, Command Line arguments.
    * @retun void, Prints the output to System.out.
    */
@@ -25,7 +25,7 @@ public class Driver {
     String key = input.nextLine();
     String initVector = input.nextLine();
     String text = "";
-    while(input.hasNext()) {
+    while(input.next() != null) {
       text = text + input.nextLine();
       if(input.hasNextLine()) {
         text = text + "\n";
