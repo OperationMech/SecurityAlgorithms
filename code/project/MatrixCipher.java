@@ -326,7 +326,7 @@ public class MatrixCipher {
         stateMatrix = xorMatrices(localVectorBytes, stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(5), stateMatrix);
         localVectorBytes = stateMatrix;
-        output = output + bytesToString(stateMatrix);
+        output = output + bytesToHex(stateMatrix);
         blocks++;
       }
       i++;
