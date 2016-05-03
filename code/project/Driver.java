@@ -24,7 +24,7 @@ public class Driver {
     Scanner input = new Scanner(System.in);
     String key = input.nextLine();
     String initVector = input.nextLine();
-    String argument = input.nextLint();
+    String argument = input.nextLine();
     String text = "";
     while(input.hasNext()) {
       text = text + input.nextLine();
