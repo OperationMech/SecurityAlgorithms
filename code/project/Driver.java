@@ -30,7 +30,6 @@ public class Driver {
     char[] charKey = processString(key);
     char[] charIV = processString(initVector);
     char[] charText = processString(text);
-    System.out.println(charIV.toString() + charKey.toString() + charText.toString());
     if(argument.equals("encrypt")) {
       // Safety try block for destruction of the cipher.
       try {

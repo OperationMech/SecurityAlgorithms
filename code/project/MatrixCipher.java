@@ -286,7 +286,6 @@ public class MatrixCipher {
    */
   public String encrypt(char[] key, char[] initVector, char[] message) {
     String output = "";
-    boolean done = false;
     byte[] localVectorBytes = new byte[(initVector.length / 2)];
     int j = 0;
     for (int i = 0; i < localVectorBytes.length; i = i + 2, j++) {
