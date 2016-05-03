@@ -285,7 +285,7 @@ public class MatrixCipher {
   private String bytesToCharString(byte[] input) {
     String output = "";
     for (int i = 0; i < input.length; i++) {
-      output = output + String((char) input[i]);
+      output = output + String.valueOf((char) input[i]);
     }
     return output;
   }
