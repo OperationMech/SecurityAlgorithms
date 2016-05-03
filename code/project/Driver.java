@@ -25,9 +25,9 @@ public class Driver {
     String key = input.nextLine();
     String initVector = input.nextLine();
     String text = "";
-    while(input.hasNext()) {
+    while(input.hasNext() != null) {
       text = text + input.nextLine();
-      if(input.hasNextLine()) {
+      if(input.hasNextLine() != null) {
         text = text + "\n";
       }
     }
