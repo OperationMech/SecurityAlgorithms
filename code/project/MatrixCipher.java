@@ -38,7 +38,7 @@ public class MatrixCipher {
     int i = 0;
     byte[] localBytes = new byte[input.length];
     while (i < input.length) {
-      localBytes[j] = bitwiseEndianShift(Character.getNumericValue(input[i]));
+      localBytes[i] = bitwiseEndianShift((byte) Character.getNumericValue(input[i]));
       i++;
     }
     text = localBytes;
