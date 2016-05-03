@@ -24,6 +24,7 @@ public class Driver {
     Scanner input = new Scanner(System.in);
     String key = input.nextLine();
     String initVector = input.nextLine();
+    String argument = input.nextLint();
     String text = "";
     while(input.hasNext()) {
       text = text + input.nextLine();
@@ -32,16 +33,14 @@ public class Driver {
     char[] charKey = processString(key);
     char[] charIV = processString(initVector);
     char[] charText = processString(text);
-    if(args[0].toLowerCase().equals("e") ||
-       args[0].toLowerCase().equals("encrypt")) {
+    if(argument.equals("encrypt")) {
       // Safety try block for destruction of the cipher.
       try {
         MatrixCipher matrixCiph = new MatrixCipher();
         System.out.print(matrixCiph.encrypt(charKey, charIV, charText));
       } catch (Exception e) {
       }
-    } else if(args[0].toLowerCase().equals("d") ||
-      args[0].toLowerCase().equals("decrypt")) {
+    } else if(argument.equals("decrypt")) {
       // Safety try block for destruction of the cipher.
       try {
       } catch (Exception e) {
