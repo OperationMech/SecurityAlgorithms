@@ -262,6 +262,7 @@ public class MatrixCipher {
   }
 
   /**
+   *
    * bytesToString method converts an input byte array into a string.
    * @param input, The input byte array to convert.
    * @return String, The output string from the bytes.
@@ -269,10 +270,26 @@ public class MatrixCipher {
   private String bytesToString(byte[] input) {
     String output = "";
     for (int i = 0; i < input.length; i++) {
-      output = output + Integer.toHexString((byte) input[i]);
+      output = output + Integer.toHexString((byte) input[i]).toUpperCase();
     }
     return output;
   }
+
+  /**
+   *
+   * bytesToCharString method converts an input byte array
+   *   into character strings.
+   * @param input, The input byte array to convert.
+   * @return String, The output character string from the bytes.
+   */
+  private String bytesToCharString(byte[] input) {
+    String output = "";
+    for (int i = 0; i < input.length; i++) {
+      output = output + String((char) input[i]);
+    }
+    return output;
+  }
+
 
   /**
    *
@@ -354,7 +371,7 @@ public class MatrixCipher {
         for(j = 0; j < 32; j++) {
           stateMatrix[j] = bitwiseEndianShift(stateMatrix[j]);
         }
-        output = output + bytesToString(stateMatrix);
+        output = output + bytesToCharString(stateMatrix);
         blocks++;
       }
       i++;
