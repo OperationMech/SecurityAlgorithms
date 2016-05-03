@@ -54,7 +54,7 @@ public class MatrixCipher {
     int j = 0;
     byte[] localBytes = new byte[(input.length / 2)];
     while (i < input.length) {
-      char[] localByteChars = {input[i], input[i+1]}
+      char[] localByteChars = {input[i], input[i+1]};
       localBytes[j] = (byte) charByteToByte(localByteChars, 16);
       i = i + 2;
       j++;
