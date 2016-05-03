@@ -35,10 +35,12 @@ public class MatrixCipher {
    */
   private void setText(char[] input) {
     int i = 0;
+    int j = 0;
     byte[] localBytes = new byte[(input.length / 2)];
     while (i < input.length) {
       char[] localByteChars = {input[i], input[i + 1]};
-      localBytes[i] = bitwiseEndianShift(charByteToByte(localByteChars, 16));
+      localBytes[j] = bitwiseEndianShift(charByteToByte(localByteChars, 16));
+      j++;
       i = i + 2;
     }
     text = localBytes;
@@ -51,10 +53,12 @@ public class MatrixCipher {
    */
   private void setTextDecrypt(char[] input) {
     int i = 0;
+    int j = 0;
     byte[] localBytes = new byte[(input.length / 2)];
     while (i < input.length) {
       char[] localByteChars = {input[i], input[i + 1]};
-      localBytes[i] = charByteToByte(localByteChars, 16);
+      localBytes[j] = charByteToByte(localByteChars, 16);
+      j++;
       i = i + 2;
     }
     text = localBytes;
@@ -259,6 +263,11 @@ public class MatrixCipher {
     return output;
   }
 
+  /**
+   * bytesToString method converts an input byte array into a string.
+   * @param input, The input byte array to convert.
+   * @return String, The output string from the bytes.
+   */
   private String bytesToString(byte[] input) {
     String output = "";
     for (int i = 0; i < input.length; i++) {
