@@ -57,7 +57,7 @@ public class MatrixCipher {
       char[] localByteChars = {input[i], input[i+1]}
       localBytes[j] = (byte) charByteToByte(localByteChars, 16);
       i = i + 2;
-      j++
+      j++;
     }
     text = localBytes;
   }
