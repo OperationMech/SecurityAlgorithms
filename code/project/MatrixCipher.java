@@ -302,7 +302,7 @@ public class MatrixCipher {
     int blocks = 0;
     while (blocks < (text.length / 32)) {
       stateMatrix[i % 32] = text[i];
-      if (i % 32 == 0) {
+      if (i+1 % 32 == 0) {
         stateMatrix = xorMatrices(roundKeys.get(0), stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(1), stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(2), stateMatrix);
@@ -344,7 +344,7 @@ public class MatrixCipher {
     int blocks = 0;
     while ( blocks <  (text.length / 32)) {
       stateMatrix[i % 32] = text[i];
-      if(i % 32 == 0) {
+      if(i+1 % 32 == 0) {
         stateMatrix = xorMatrices(roundKeys.get(5), stateMatrix);
         stateMatrix = xorMatrices(localVectorBytes, stateMatrix);
         stateMatrix = xorMatrices(roundKeys.get(4), stateMatrix);
