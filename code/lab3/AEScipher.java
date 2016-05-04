@@ -319,8 +319,8 @@ public class AEScipher {
     int count = 0;
     for(int i = 0; i < pTextHex.length()-1; i+=2) {
       stateMatrix[index][count%4] =
-        (byte)((stringToByte(pTextHex.substring(i,i+1) * 16) +
-                stringToByte(pTextHex.substring(i+1,i+2)));
+        (byte)(stringToByte(pTextHex.substring(i,i+1) * 16) +
+               stringToByte(pTextHex.substring(i+1,i+2)));
       count++;
       if(count%4 == 0 && count != 0) {
         index++;
